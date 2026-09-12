@@ -1,0 +1,36 @@
+- id: "1"
+  title: Estrutura base da SPA com tema natalino e layout responsivo
+  description: >-
+    Configura o esqueleto HTML5 e CSS com Bootstrap 5 via CDN atendendo a CAP-4 de SPEC.md.
+    Aplica a paleta festiva (vermelho, verde e dourado), efeito sutil de neve e botões com área de toque de no mínimo 48px com layout fluido de 360px a 1920px.
+  spec_checkpoint: false
+  done_checkpoint: true
+  invoke_dev_with: >-
+    Utilizar apenas HTML5, CSS3 e Bootstrap 5 via CDN, sem build step ou dependências pesadas. Garantir botões com área de toque mínima de 48px.
+- id: "2"
+  title: Formulário de redação da carta e seletor lúdico de comportamento
+  description: >-
+    Implementa a interface de entrada de dados da cartinha e o seletor de comportamento cobrindo CAP-1 e CAP-2 de SPEC.md.
+    Contém campos para nome, idade, cidade e pedidos com validações visuais amigáveis sem jargões e seleção lúdica de comportamento integrada ao texto da carta.
+  spec_checkpoint: false
+  done_checkpoint: true
+  invoke_dev_with: >-
+    Validação 100% client-side sem alertas técnicos intrusivos (usar mensagens lúdicas e acolhedoras). Zero persistência remota.
+- id: "3"
+  title: Envio interativo da carta com feedback festivo e modal do Papai Noel
+  description: >-
+    Implementa a simulação mágica de envio da carta e o retorno celebrativo conforme especificado em CAP-3 de SPEC.md.
+    Ao acionar o envio sem recarregar a página, dispara animação festiva e abre modal acolhedor com mensagem do Papai Noel e selo comemorativo do Polo Norte.
+  spec_checkpoint: false
+  done_checkpoint: true
+  invoke_dev_with: >-
+    Comportamento estritamente local (sem envio real de e-mail ou APIs externas). Feedback visual imediato e acolhedor.
+- id: "4"
+  title: Impressão estilizada da cartinha como lembrança física
+  description: >-
+    Adiciona o recurso de impressão e formatação para folha física atendendo a CAP-5 de SPEC.md.
+    Dispara window.print() via botão temático com regras @media print que ocultam controles web e destacam uma cartinha festiva limpa para guardar.
+  spec_checkpoint: false
+  done_checkpoint: false
+  invoke_dev_with: >-
+    Garantir que botões de interface, modais e elementos funcionais fiquem ocultos no @media print, mantendo apenas a cartinha formatada como lembrança.

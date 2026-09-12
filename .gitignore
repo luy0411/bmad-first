@@ -1,0 +1,5 @@
+.idea/
+tests/artifacts/
+_bmad/render/
+__pycache__/
+*.pyc
