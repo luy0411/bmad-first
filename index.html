@@ -105,9 +105,235 @@
             </button>
           </div>
 
-          <!-- Ponto de Montagem Estrutural para as Próximas Histórias (Formulário, Modal, Impressão) -->
-          <section id="area-da-cartinha" class="mt-4 pt-3 border-top d-none" aria-live="polite">
-            <!-- Será populado na História 2 com o formulário de redação e seletor de comportamento -->
+          <!-- Seção da Cartinha: Formulário e Pergaminho em Tempo Real -->
+          <section id="area-da-cartinha" class="mt-4 pt-4 border-top" aria-live="polite">
+            <div class="row g-4">
+              <!-- Coluna da Esquerda: Formulário de Redação -->
+              <div class="col-12 col-lg-6">
+                <div class="painel-formulario p-3 p-sm-4">
+                  <div class="painel-header mb-3">
+                    <h2 class="h4 festive-title text-start">
+                      <span aria-hidden="true">✍️</span> Redija sua Cartinha Mágica
+                    </h2>
+                    <p class="text-muted small mb-0 text-start">
+                      Preencha os campos abaixo com carinho. O Papai Noel lê cada detalhe!
+                    </p>
+                  </div>
+
+                  <form id="form-cartinha" novalidate autocomplete="off">
+                    <!-- Campo Nome -->
+                    <div class="mb-3 text-start">
+                      <label for="nome-crianca" class="form-label label-natal">
+                        Como você se chama? <span class="required-star" aria-hidden="true">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="nome-crianca"
+                        name="nome"
+                        class="form-control form-control-natal"
+                        placeholder="Ex: Aninha ou Pedrinho"
+                        maxlength="60"
+                        required
+                        aria-describedby="erro-nome"
+                      >
+                      <div id="erro-nome" class="mensagem-ajuda-gentil d-none" role="alert"></div>
+                    </div>
+
+                    <!-- Linha Idade e Cidade -->
+                    <div class="row g-3 mb-3 text-start">
+                      <div class="col-12 col-sm-5">
+                        <label for="idade-crianca" class="form-label label-natal">
+                          Sua idade
+                        </label>
+                        <input
+                          type="number"
+                          id="idade-crianca"
+                          name="idade"
+                          class="form-control form-control-natal"
+                          placeholder="Ex: 7"
+                          min="1"
+                          max="120"
+                          aria-describedby="erro-idade"
+                        >
+                        <div id="erro-idade" class="mensagem-ajuda-gentil d-none" role="alert"></div>
+                      </div>
+
+                      <div class="col-12 col-sm-7">
+                        <label for="cidade-crianca" class="form-label label-natal">
+                          Sua cidade
+                        </label>
+                        <input
+                          type="text"
+                          id="cidade-crianca"
+                          name="cidade"
+                          class="form-control form-control-natal"
+                          placeholder="Ex: Curitiba, Recife..."
+                          maxlength="60"
+                        >
+                      </div>
+                    </div>
+
+                    <!-- Seletor de Comportamento (Lúdico com cards natalinos) -->
+                    <fieldset class="seletor-comportamento-container mb-3 text-start">
+                      <legend class="form-label label-natal mb-2">
+                        Como foi seu comportamento neste ano? <span class="required-star" aria-hidden="true">*</span>
+                      </legend>
+                      <div class="row g-2 opcoes-comportamento">
+                        <!-- Opção 1: Bonzinho -->
+                        <div class="col-12 col-sm-4">
+                          <label class="card-comportamento w-100" for="comportamento-bonzinho">
+                            <input
+                              type="radio"
+                              name="comportamento"
+                              id="comportamento-bonzinho"
+                              value="Fui muito bonzinho(a)"
+                              class="visually-hidden radio-comportamento"
+                              checked
+                            >
+                            <span class="card-comportamento-inner">
+                              <span class="comportamento-icone" aria-hidden="true">😇</span>
+                              <span class="comportamento-titulo">Fui muito bonzinho(a)</span>
+                              <span class="comportamento-badge">Coração d'ouro</span>
+                            </span>
+                          </label>
+                        </div>
+
+                        <!-- Opção 2: Tentei bastante -->
+                        <div class="col-12 col-sm-4">
+                          <label class="card-comportamento w-100" for="comportamento-tentei">
+                            <input
+                              type="radio"
+                              name="comportamento"
+                              id="comportamento-tentei"
+                              value="Tentei bastante"
+                              class="visually-hidden radio-comportamento"
+                            >
+                            <span class="card-comportamento-inner">
+                              <span class="comportamento-icone" aria-hidden="true">⭐</span>
+                              <span class="comportamento-titulo">Tentei bastante</span>
+                              <span class="comportamento-badge">Super esforçado</span>
+                            </span>
+                          </label>
+                        </div>
+
+                        <!-- Opção 3: Travessura -->
+                        <div class="col-12 col-sm-4">
+                          <label class="card-comportamento w-100" for="comportamento-travessura">
+                            <input
+                              type="radio"
+                              name="comportamento"
+                              id="comportamento-travessura"
+                              value="Às vezes fiz travessura"
+                              class="visually-hidden radio-comportamento"
+                            >
+                            <span class="card-comportamento-inner">
+                              <span class="comportamento-icone" aria-hidden="true">🍪</span>
+                              <span class="comportamento-titulo">Às vezes fiz travessura</span>
+                              <span class="comportamento-badge">Com bom coração</span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <!-- Campo Pedidos / Mensagem -->
+                    <div class="mb-4 text-start">
+                      <label for="pedidos-crianca" class="form-label label-natal">
+                        Seus pedidos e mensagem especial <span class="required-star" aria-hidden="true">*</span>
+                      </label>
+                      <textarea
+                        id="pedidos-crianca"
+                        name="pedidos"
+                        class="form-control form-control-natal"
+                        rows="4"
+                        placeholder="Querido Papai Noel, neste Natal eu gostaria muito de pedir..."
+                        maxlength="1000"
+                        required
+                        aria-describedby="erro-pedidos"
+                      ></textarea>
+                      <div class="d-flex justify-content-between align-items-center mt-1">
+                        <div id="erro-pedidos" class="mensagem-ajuda-gentil d-none" role="alert"></div>
+                        <span id="contador-caracteres" class="text-muted small ms-auto">0/1000</span>
+                      </div>
+                    </div>
+
+                    <!-- Ações do Formulário -->
+                    <div class="form-acoes d-flex flex-column flex-sm-row gap-2 pt-2">
+                      <button type="submit" id="btn-validar-cartinha" class="btn btn-natal-primary flex-grow-1">
+                        <span aria-hidden="true">✨</span>
+                        <span class="ms-1">Revisar Minha Cartinha</span>
+                      </button>
+                      <button type="button" id="btn-limpar-cartinha" class="btn btn-outline-natal">
+                        <span aria-hidden="true">🔄</span>
+                        <span class="ms-1">Recomeçar</span>
+                      </button>
+                    </div>
+
+                    <!-- Mensagem Global de Sucesso Acolhedora -->
+                    <div id="sucesso-validacao" class="alerta-sucesso-natal mt-3 d-none" role="status" aria-live="polite">
+                      <span aria-hidden="true">🎉</span>
+                      <span class="ms-1">Tudo perfeito! Sua cartinha está prontinha e linda no pergaminho ao lado!</span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Coluna da Direita: Pergaminho da Cartinha em Tempo Real -->
+              <div class="col-12 col-lg-6">
+                <div class="pergaminho-wrapper">
+                  <div class="pergaminho-conteudo" id="pergaminho-carta" tabindex="0" role="region" aria-label="Visualização da Cartinha de Natal">
+                    <!-- Cabeçalho do Pergaminho -->
+                    <div class="pergaminho-header d-flex justify-content-between align-items-start border-bottom pb-2 mb-3">
+                      <div class="selo-carimbo">
+                        <span class="selo-icone" aria-hidden="true">📮</span>
+                        <span class="selo-texto">Polo Norte Express</span>
+                      </div>
+                      <div class="pergaminho-data text-end">
+                        <span id="carta-data">Natal de 2026</span>
+                      </div>
+                    </div>
+
+                    <!-- Saudação -->
+                    <div class="pergaminho-saudacao mb-3 text-start">
+                      <p class="h5 pergaminho-titulo-saudacao">Querido Papai Noel,</p>
+                    </div>
+
+                    <!-- Corpo da Carta -->
+                    <div class="pergaminho-corpo text-start">
+                      <p class="carta-paragrafo-apresentacao mb-3">
+                        Meu nome é <strong id="carta-nome" class="destaque-pergaminho">...</strong>,
+                        tenho <strong id="carta-idade" class="destaque-pergaminho">...</strong> anos
+                        e moro em <strong id="carta-cidade" class="destaque-pergaminho">uma linda cidade</strong>.
+                      </p>
+
+                      <p id="carta-comportamento-container" class="carta-paragrafo-comportamento mb-3">
+                        Neste ano, <span id="carta-comportamento" class="destaque-comportamento"><span class="comportamento-icon-inline" aria-hidden="true">😇</span> fui muito bonzinho(a)</span> e me esforcei para fazer o meu melhor com minha família e amigos!
+                      </p>
+
+                      <div class="carta-secao-pedidos mt-3">
+                        <p class="mb-1 text-muted small fw-bold text-uppercase letter-spacing-1">Meus pedidos e desejos:</p>
+                        <blockquote id="carta-pedidos" class="carta-texto-pedidos">
+                          (Seus desejos e pedidos especiais para o Papai Noel aparecerão aqui com todo o encanto...)
+                        </blockquote>
+                      </div>
+
+                      <div class="pergaminho-despedida mt-4 pt-2 text-start">
+                        <p class="mb-1">Com todo o meu amor e carinho,</p>
+                        <p id="carta-assinatura" class="carta-assinatura-manuscrita">...</p>
+                      </div>
+                    </div>
+
+                    <!-- Rodapé do Pergaminho com Selo de Cera Natalino -->
+                    <div class="pergaminho-rodape d-flex justify-content-between align-items-center pt-3 mt-3 border-top">
+                      <div class="selo-cera" aria-hidden="true">
+                        <span class="selo-cera-texto">★ POLO NORTE ★</span>
+                      </div>
+                      <span class="text-muted small fw-bold">Cartinha Oficial</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
         </div>
       </div>
@@ -126,5 +352,8 @@
 
   <!-- Bootstrap 5 JS Bundle via CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+  <!-- Lógica Client-Side da Cartinha -->
+  <script src="js/app.js"></script>
 </body>
 </html>

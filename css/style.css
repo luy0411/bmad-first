@@ -410,6 +410,340 @@ input[type="reset"]:focus-visible {
 }
 
 /* ==========================================================================
+   Formulário de Redação da Cartinha (História 2 - CAP-1 e CAP-2)
+   ========================================================================== */
+.painel-formulario {
+  background: #ffffff;
+  border: 2px solid var(--cor-borda-decorativa);
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.festive-title {
+  color: var(--cor-natal-vermelho);
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.label-natal {
+  color: var(--cor-natal-verde-escuro);
+  font-weight: 700;
+  font-size: 0.98rem;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.required-star {
+  color: var(--cor-natal-vermelho);
+  font-weight: bold;
+}
+
+.form-control-natal {
+  font-size: 1rem; /* Mínimo 16px para evitar auto-zoom em mobile */
+  border: 2px solid var(--cor-borda-decorativa);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  color: var(--cor-texto-principal);
+  background-color: #fdfdfd;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-control-natal:focus {
+  border-color: var(--cor-natal-dourado);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.25);
+  outline: none;
+}
+
+.form-control-natal.is-invalid {
+  border-color: var(--cor-natal-vermelho);
+  box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.2);
+  background-color: #fff9f9;
+}
+
+/* ==========================================================================
+   Seletor Lúdico de Comportamento (Área de toque >= 48px)
+   ========================================================================== */
+.seletor-comportamento-container {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card-comportamento {
+  cursor: pointer;
+  margin: 0;
+  display: block;
+  user-select: none;
+}
+
+.card-comportamento-inner {
+  min-height: 58px;
+  min-width: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.6rem 0.5rem;
+  border: 2px solid var(--cor-borda-decorativa);
+  border-radius: 14px;
+  background-color: #faf8f5;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.card-comportamento:hover .card-comportamento-inner {
+  border-color: var(--cor-natal-dourado);
+  background-color: #fffdf7;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(212, 175, 55, 0.18);
+}
+
+/* Seleção ativa do comportamento */
+.card-comportamento input[type="radio"]:checked + .card-comportamento-inner,
+.card-comportamento.ativo .card-comportamento-inner {
+  border-color: var(--cor-natal-verde);
+  background: linear-gradient(145deg, #f3faef 0%, #e6f6df 100%);
+  box-shadow: 0 0 0 3px rgba(22, 91, 51, 0.25), 0 6px 14px rgba(22, 91, 51, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Foco visível acessível no radio button para navegação por teclado */
+.card-comportamento input[type="radio"]:focus-visible + .card-comportamento-inner {
+  outline: 3px solid var(--cor-natal-dourado);
+  outline-offset: 3px;
+}
+
+.comportamento-icone {
+  font-size: 1.6rem;
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.comportamento-titulo {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--cor-texto-principal);
+  line-height: 1.25;
+  display: block;
+}
+
+.comportamento-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--cor-natal-verde);
+  margin-top: 0.2rem;
+  display: block;
+}
+
+/* ==========================================================================
+   Validações Gentis e Acolhedoras
+   ========================================================================== */
+.mensagem-ajuda-gentil {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--cor-natal-vermelho-escuro);
+  background: #fff0f2;
+  border: 1px solid #ffd0d6;
+  border-radius: 10px;
+  padding: 0.5rem 0.85rem;
+  margin-top: 0.4rem;
+  box-shadow: 0 2px 6px rgba(196, 30, 58, 0.08);
+  animation: fadeInGentil 0.25s ease-out;
+}
+
+.alerta-sucesso-natal {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cor-natal-verde-escuro);
+  background: #f0fdf4;
+  border: 2px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 12px rgba(22, 91, 51, 0.1);
+  animation: fadeInGentil 0.3s ease-out;
+}
+
+@keyframes fadeInGentil {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botão de Contorno Natalino */
+.btn-outline-natal {
+  background-color: transparent;
+  border: 2px solid var(--cor-natal-dourado);
+  color: var(--cor-texto-principal);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn-outline-natal:hover,
+.btn-outline-natal:focus {
+  background-color: #fcf6e5;
+  border-color: #c49b1a;
+  color: var(--cor-natal-vermelho);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(212, 175, 55, 0.2);
+}
+
+.btn-outline-natal:focus-visible {
+  outline: 3px solid var(--cor-natal-dourado);
+  outline-offset: 2px;
+}
+
+.btn-outline-natal:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Pergaminho da Cartinha em Tempo Real
+   ========================================================================== */
+.pergaminho-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pergaminho-conteudo {
+  background-color: #fbf7ee;
+  background-image:
+    radial-gradient(#ecdcb9 1px, transparent 1px),
+    radial-gradient(#ecdcb9 1px, #fbf7ee 1px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+  border: 3px solid #dfcca5;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow:
+    inset 0 0 35px rgba(184, 150, 99, 0.18),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+  color: #382a17;
+  font-family: "Georgia", "Cambria", "Times New Roman", serif;
+  line-height: 1.75;
+  flex-grow: 1;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.pergaminho-conteudo:focus-visible {
+  outline: 3px solid var(--cor-natal-dourado);
+  outline-offset: 3px;
+}
+
+/* Efeito de Destaque Festivo quando a cartinha é validada */
+.pergaminho-destaque {
+  animation: pulsoPergaminho 1.5s ease;
+}
+
+@keyframes pulsoPergaminho {
+  0% {
+    box-shadow: inset 0 0 35px rgba(184, 150, 99, 0.18), 0 0 0 0 rgba(212, 175, 55, 0.6);
+    border-color: var(--cor-natal-dourado);
+  }
+  50% {
+    box-shadow: inset 0 0 45px rgba(212, 175, 55, 0.35), 0 0 24px rgba(212, 175, 55, 0.5);
+    border-color: #ffd700;
+  }
+  100% {
+    box-shadow: inset 0 0 35px rgba(184, 150, 99, 0.18), 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: #dfcca5;
+  }
+}
+
+.selo-carimbo {
+  border: 2px solid var(--cor-natal-vermelho);
+  border-radius: 8px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--cor-natal-vermelho);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transform: rotate(-3deg);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  user-select: none;
+}
+
+.pergaminho-data {
+  font-size: 0.88rem;
+  color: #7a6344;
+  font-weight: 600;
+}
+
+.pergaminho-titulo-saudacao {
+  font-family: "Caveat", "Segoe Print", "Comic Sans MS", cursive, serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--cor-natal-vermelho-escuro);
+  margin-bottom: 0.5rem;
+}
+
+.destaque-pergaminho {
+  color: var(--cor-natal-vermelho);
+  border-bottom: 2px dashed #dfcca5;
+  padding: 0 4px;
+}
+
+.destaque-comportamento {
+  color: var(--cor-natal-verde-escuro);
+  font-weight: 700;
+  background-color: rgba(22, 91, 51, 0.09);
+  padding: 2px 8px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.comportamento-icon-inline {
+  font-style: normal;
+  margin-right: 2px;
+}
+
+.carta-texto-pedidos {
+  font-style: italic;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-left: 4px solid var(--cor-natal-vermelho);
+  padding: 0.85rem 1rem;
+  border-radius: 0 10px 10px 0;
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #2b1f11;
+  font-size: 1rem;
+}
+
+.carta-assinatura-manuscrita {
+  font-family: "Caveat", "Segoe Print", "Comic Sans MS", cursive, serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--cor-natal-vermelho);
+  margin-top: 0.25rem;
+}
+
+.selo-cera {
+  background: linear-gradient(135deg, var(--cor-natal-vermelho), #9e142b);
+  color: #ffffff;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  box-shadow: 0 2px 8px rgba(196, 30, 58, 0.4);
+  border: 1px solid #ffd0d6;
+  user-select: none;
+}
+
+/* ==========================================================================
    Responsividade (360px a 1920px)
    ========================================================================== */
 @media (max-width: 576px) {
@@ -425,6 +759,15 @@ input[type="reset"]:focus-visible {
 
   .welcome-banner {
     padding: 1.1rem;
+  }
+
+  .painel-formulario,
+  .pergaminho-conteudo {
+    padding: 1.1rem 0.9rem;
+  }
+
+  .card-comportamento-inner {
+    padding: 0.75rem 0.5rem;
   }
 }
 
@@ -447,3 +790,4 @@ input[type="reset"]:focus-visible {
     scroll-behavior: auto !important;
   }
 }
+
