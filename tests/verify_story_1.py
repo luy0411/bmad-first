@@ -131,7 +131,7 @@ def main():
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-        const buttons = Array.from(document.querySelectorAll('button:not(.btn-close), .btn:not(.btn-close), input[type="button"]'));
+        const buttons = Array.from(document.querySelectorAll('button:not(.btn-close), .btn:not(.btn-close), input[type="button"]')).filter(b => !b.closest('.modal'));
         const audits = buttons.map(b => {
             const rect = b.getBoundingClientRect();
             return {

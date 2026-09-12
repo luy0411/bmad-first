@@ -62,6 +62,11 @@
   let btnLimpar;
   let btnIniciar;
   let btnConhecerMagia;
+  let btnEnviarCartinha;
+
+  // Elementos do Modal do Papai Noel
+  let modalPapaiNoel;
+  let mensagemPapaiNoel;
 
   function formatarDataNatal() {
     try {
@@ -176,7 +181,7 @@
     }
   }
 
-  function validarFormulario(evento) {
+  function validarFormulario(evento, focarPergaminho = true) {
     if (evento) {
       evento.preventDefault();
     }
@@ -240,7 +245,7 @@
       sucessoValidacao.classList.remove('d-none');
     }
 
-    if (pergaminhoCarta) {
+    if (focarPergaminho && pergaminhoCarta) {
       if (timerDestaquePergaminho) {
         clearTimeout(timerDestaquePergaminho);
         timerDestaquePergaminho = null;
@@ -271,6 +276,13 @@
     }
     limparTodosErros();
 
+    if (btnEnviarCartinha) {
+      btnEnviarCartinha.classList.remove('despachando-animacao');
+    }
+    if (pergaminhoCarta) {
+      pergaminhoCarta.classList.remove('efeito-despacho');
+    }
+
     // Volta para o comportamento padrão
     const radioBonzinho = document.getElementById('comportamento-bonzinho');
     if (radioBonzinho) {
@@ -287,6 +299,159 @@
     if (inputNome) {
       inputNome.focus();
     }
+  }
+
+  function escapeHtml(texto) {
+    if (!texto) return '';
+    return String(texto)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function gerarMensagemPapaiNoel(nome, comportamento, cidade) {
+    const nomeFormatado = nome ? nome.trim() : 'criança querida';
+    const cidadeFrase = cidade && cidade.trim()
+      ? ` aqui no Polo Norte já sabemos de todo o carinho que você espalha em <strong>${escapeHtml(cidade.trim())}</strong>!`
+      : ' sua linda cartinha viajou veloz pelo céu estrelado direto para o Polo Norte!';
+
+    let mensagemComportamento = '';
+    let emojiComportamento = '😇';
+
+    if (comportamento === 'Tentei bastante') {
+      emojiComportamento = '⭐';
+      mensagemComportamento = `Eu acompanhei de pertinho todo o seu esforço durante este ano. Tentar bastante, aprender com os desafios e dar o seu melhor todos os dias com sua família e amigos é uma das atitudes mais mágicas e nobres que existem! Tenho muito orgulho da sua dedicação.`;
+    } else if (comportamento === 'Às vezes fiz travessura') {
+      emojiComportamento = '🍪';
+      mensagemComportamento = `Sabe, todo mundo faz pequenas travessuras de vez em quando — até as minhas renas e os duendes aprontam na oficina de brinquedos! O que mais aquece o meu coração é a sua sinceridade, a vontade de melhorar e o tamanho gigante do seu bom coração.`;
+    } else {
+      // 'Fui muito bonzinho(a)' (padrão)
+      emojiComportamento = '😇';
+      mensagemComportamento = `Fiquei radiante e com o coração quentinho ao saber que você foi muito bonzinho(a) neste ano! Cuidar com amor da sua família, ajudar seus amigos e espalhar sorrisos faz o seu coração brilhar como a estrela mais reluzente do Natal.`;
+    }
+
+    return `
+      <div class="mensagem-papai-noel-saudacao">
+        Ho! Ho! Ho! Querido(a) <strong>${escapeHtml(nomeFormatado)}</strong>! ${emojiComportamento}
+      </div>
+      <p class="mensagem-papai-noel-corpo">
+        Que alegria imensa receber sua mensagem! O correio mágico do Polo Norte acabou de me entregar sua cartinha e${cidadeFrase}
+      </p>
+      <p class="mensagem-papai-noel-corpo">
+        ${mensagemComportamento}
+      </p>
+      <p class="mensagem-papai-noel-corpo">
+        Seus pedidos e desejos especiais já estão guardados com todo o carinho do mundo nas mãos dos nossos duendes artesãos. Continue sempre sendo essa pessoa iluminada, amorosa e cheia de esperança!
+      </p>
+      <div class="mensagem-papai-noel-assinatura">
+        Com todo o meu amor, carinho e um grande abraço quentinho,<br>
+        <strong>🎅 Papai Noel e os Duendes 🎄✨</strong>
+      </div>
+    `;
+  }
+
+  function dispararEfeitoDespacho() {
+    if (btnEnviarCartinha) {
+      btnEnviarCartinha.classList.remove('despachando-animacao');
+      void btnEnviarCartinha.offsetWidth;
+      btnEnviarCartinha.classList.add('despachando-animacao');
+      setTimeout(() => {
+        if (btnEnviarCartinha) {
+          btnEnviarCartinha.classList.remove('despachando-animacao');
+        }
+      }, 900);
+    }
+
+    if (pergaminhoCarta) {
+      pergaminhoCarta.classList.remove('efeito-despacho');
+      void pergaminhoCarta.offsetWidth;
+      pergaminhoCarta.classList.add('efeito-despacho');
+      setTimeout(() => {
+        if (pergaminhoCarta) {
+          pergaminhoCarta.classList.remove('efeito-despacho');
+        }
+      }, 1100);
+    }
+  }
+
+  function abrirModalPapaiNoel() {
+    if (!modalPapaiNoel) return;
+
+    if (window.bootstrap && typeof window.bootstrap.Modal === 'function') {
+      const modalInstancia = window.bootstrap.Modal.getOrCreateInstance(modalPapaiNoel);
+      modalInstancia.show();
+    } else {
+      modalPapaiNoel.classList.add('show');
+      modalPapaiNoel.style.display = 'block';
+      modalPapaiNoel.removeAttribute('aria-hidden');
+      modalPapaiNoel.setAttribute('aria-modal', 'true');
+      document.body.classList.add('modal-open');
+      let backdrop = document.querySelector('.modal-backdrop');
+      if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'modal-backdrop fade show';
+        document.body.appendChild(backdrop);
+      }
+      const fecharTopo = modalPapaiNoel.querySelector('.btn-modal-fechar-topo');
+      if (fecharTopo) {
+        fecharTopo.focus();
+      }
+    }
+  }
+
+  function fecharModalPapaiNoel() {
+    if (!modalPapaiNoel) return;
+
+    if (window.bootstrap && typeof window.bootstrap.Modal === 'function') {
+      const modalInstancia = window.bootstrap.Modal.getInstance(modalPapaiNoel);
+      if (modalInstancia) {
+        modalInstancia.hide();
+      }
+    } else {
+      modalPapaiNoel.classList.remove('show');
+      modalPapaiNoel.style.display = 'none';
+      modalPapaiNoel.setAttribute('aria-hidden', 'true');
+      modalPapaiNoel.removeAttribute('aria-modal');
+      document.body.classList.remove('modal-open');
+      const backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) {
+        backdrop.remove();
+      }
+      if (btnEnviarCartinha) {
+        btnEnviarCartinha.focus();
+      }
+    }
+  }
+
+  function enviarCartinhaParaNoel(evento) {
+    if (evento) {
+      evento.preventDefault();
+    }
+
+    // Validação síncrona gentil dos dados da carta
+    const valido = validarFormulario(null, false);
+    if (!valido) {
+      return false;
+    }
+
+    // Animação festiva de despacho
+    dispararEfeitoDespacho();
+
+    // Atualização da mensagem personalizada do Papai Noel
+    const nome = inputNome ? inputNome.value.trim() : '';
+    const comportamento = obterComportamentoSelecionado();
+    const cidade = inputCidade ? inputCidade.value.trim() : '';
+
+    if (mensagemPapaiNoel) {
+      mensagemPapaiNoel.innerHTML = gerarMensagemPapaiNoel(nome, comportamento, cidade);
+    }
+
+    // Abertura do modal temático do Papai Noel
+    abrirModalPapaiNoel();
+
+    return true;
   }
 
   function inicializar() {
@@ -316,6 +481,11 @@
     btnLimpar = document.getElementById('btn-limpar-cartinha');
     btnIniciar = document.getElementById('btn-iniciar-cartinha');
     btnConhecerMagia = document.getElementById('btn-conhecer-magia');
+    btnEnviarCartinha = document.getElementById('btn-enviar-cartinha');
+
+    // Mapeamento do Modal do Papai Noel
+    modalPapaiNoel = document.getElementById('modal-papai-noel');
+    mensagemPapaiNoel = document.getElementById('mensagem-papai-noel');
 
     // Data no pergaminho
     if (cartaData) {
@@ -376,6 +546,47 @@
     // Submissão e validação do formulário (apenas submit do form para evitar execução duplicada)
     if (formCartinha) {
       formCartinha.addEventListener('submit', validarFormulario);
+    }
+
+    // Botão de envio mágico "Enviar ao Papai Noel"
+    if (btnEnviarCartinha) {
+      btnEnviarCartinha.addEventListener('click', enviarCartinhaParaNoel);
+    }
+
+    // Gerenciamento de eventos e foco acessível do Modal do Papai Noel
+    if (modalPapaiNoel) {
+      modalPapaiNoel.addEventListener('hidden.bs.modal', () => {
+        if (btnEnviarCartinha) {
+          btnEnviarCartinha.focus();
+        }
+      });
+
+      // Suporte a fechamento manual via botões com data-bs-dismiss (fallback seguro)
+      modalPapaiNoel.querySelectorAll('[data-bs-dismiss="modal"]').forEach((btnDismiss) => {
+        btnDismiss.addEventListener('click', () => {
+          if (!window.bootstrap || typeof window.bootstrap.Modal !== 'function') {
+            fecharModalPapaiNoel();
+          }
+        });
+      });
+
+      // Fechamento ao clicar fora (backdrop) em modo fallback
+      modalPapaiNoel.addEventListener('click', (eventoModal) => {
+        if (eventoModal.target === modalPapaiNoel) {
+          if (!window.bootstrap || typeof window.bootstrap.Modal !== 'function') {
+            fecharModalPapaiNoel();
+          }
+        }
+      });
+
+      // Fechamento pela tecla Escape
+      document.addEventListener('keydown', (eventoTeclado) => {
+        if (eventoTeclado.key === 'Escape' || eventoTeclado.key === 'Esc') {
+          if (modalPapaiNoel.classList.contains('show')) {
+            fecharModalPapaiNoel();
+          }
+        }
+      });
     }
 
     // Botão de recomeçar/limpar

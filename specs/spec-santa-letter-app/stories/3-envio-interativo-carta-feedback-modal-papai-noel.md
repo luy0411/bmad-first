@@ -2,7 +2,8 @@
 title: 'Envio interativo da carta com feedback festivo e modal do Papai Noel'
 type: 'feature'
 created: '2026-09-12'
-status: 'draft'
+status: 'done'
+baseline_revision: 'd09d4f1e06f83a3122c8686e8fa63f3a3eec7bd2'
 route: 'full'
 review_loop_iteration: 0
 followup_review_recommended: false
@@ -48,18 +49,18 @@ deferred: []
 
 ## Code Map
 
-- `index.html` -- Inclusão do botão proeminente de envio festivo e da estrutura semântica do Modal do Papai Noel (Bootstrap 5 modal com acessibilidade).
-- `css/style.css` -- Estilos do modal festivo natalino, selo postal dourado do Polo Norte, botão de envio comemorativo e animações suaves de despacho.
-- `js/app.js` -- Lógica de despacho festivo, validação pré-envio, geração do texto personalizado do Papai Noel e controle do modal.
-- `tests/verify_story_3.py` -- Testes automatizados cobrindo disparo do modal, personalização do texto, acessibilidade (área de toque >= 48px, ESC, foco) e ausência de chamadas de rede.
+- `index.html` -- Adição do botão de destaque "Enviar ao Papai Noel" (`#btn-enviar-cartinha`) nas ações do formulário e inserção do modal acessível do Papai Noel (`#modal-papai-noel`, `#modalPapaiNoelLabel`, `#mensagem-papai-noel`, `#selo-polo-norte-modal`, botões de fechar com área de toque >= 48px).
+- `css/style.css` -- Estilização natalina do modal (`.modal-natalino`, `.modal-header-natal`, `.selo-modal`, `.btn-modal-fechar`), botão de envio comemorativo de alta visibilidade e efeito visual de despacho.
+- `js/app.js` -- Integração do manipulador de envio mágico com validação síncrona gentil, interpolação lúdica da mensagem personalizada de Noel baseada em nome e comportamento, exibição via Bootstrap 5 Modal e restauração do foco acessível no fechamento.
+- `tests/verify_story_3.py` -- Suíte de testes automatizados com Firefox Headless cobrindo validação prévia, personalização, selo postal, controle de foco, fechamento por ESC/backdrop e ergonomia >= 48px em 360px, 768px e 1920px.
 
 ## Tasks & Acceptance
 
 **Execution:**
-- [ ] `index.html` -- Adicionar o botão de envio mágico "Enviar ao Papai Noel" e a estrutura semântica do Modal natalino com selo do Polo Norte -- Atende a CAP-3 com interface festiva e acolhedora.
-- [ ] `css/style.css` -- Desenvolver estilos do modal temático (fundo translúcido, bordas douradas, tipografia acolhedora e botão de envio destacado) -- Garante atmosfera mágica e ergonomia (min 48px).
-- [ ] `js/app.js` -- Implementar o fluxo de envio mágico, validação, montagem da resposta carinhosa do Papai Noel e acionamento do modal Bootstrap -- Assegura resposta instantânea 100% local.
-- [ ] `tests/verify_story_3.py` -- Criar e executar a suíte de testes automatizados com Firefox Headless -- Valida critérios de aceitação e conformidade sem regressões.
+- [x] `index.html` -- Adicionar o botão de envio mágico "Enviar ao Papai Noel" e a estrutura semântica do Modal natalino com selo do Polo Norte -- Atende a CAP-3 com interface festiva e acolhedora.
+- [x] `css/style.css` -- Desenvolver estilos do modal temático (fundo translúcido, bordas douradas, tipografia acolhedora e botão de envio destacado) -- Garante atmosfera mágica e ergonomia (min 48px).
+- [x] `js/app.js` -- Implementar o fluxo de envio mágico, validação, montagem da resposta carinhosa do Papai Noel e acionamento do modal Bootstrap -- Assegura resposta instantânea 100% local.
+- [x] `tests/verify_story_3.py` -- Criar e executar a suíte de testes automatizados com Firefox Headless -- Valida critérios de aceitação e conformidade sem regressões.
 
 **Acceptance Criteria:**
 - Given a cartinha preenchida com dados válidos, when a criança clica no botão "Enviar ao Papai Noel", then uma animação festiva ocorre e o modal do Papai Noel é exibido sem recarregar a página.
@@ -68,6 +69,14 @@ deferred: []
 - Given o modal aberto, when a criança ou responsável aciona o botão fechar, o backdrop ou a tecla ESC, then o modal se encerra suavemente mantendo a integridade da aplicação.
 
 ## Implementation Notes
+
+- Botão de envio mágico `#btn-enviar-cartinha` adicionado com ícone festivo `🎅✨`, estilo `.btn-enviar-natal` de alto contraste e área de toque superior a 48px x 48px.
+- Modal acessível do Papai Noel `#modal-papai-noel` implementado com cabeçalho natalino vermelho e dourado (`.modal-header-natal`), selo postal comemorativo `#selo-polo-norte-modal` ("Oficial do Polo Norte"), área de texto `#mensagem-papai-noel` e botões ergonômicos de fechar (`.btn-modal-fechar-topo`, `.btn-modal-fechar`).
+- Validação gentil síncrona prévia que impede a abertura do modal caso haja pendências em campos essenciais (nome, pedidos ou idade inválida), direcionando o foco suavemente ao primeiro campo pendente.
+- Animação festiva de despacho visual (`.despachando-animacao` no botão e `.efeito-despacho` no pergaminho), devidamente desativada sob `@media (prefers-reduced-motion: reduce)`.
+- Interpolação lúdica e afetuosa da mensagem de Noel chamando a criança pelo nome, reconhecendo a cidade (se informada) e adaptando carinhosamente o texto para os 3 comportamentos declarados ("Fui muito bonzinho(a)", "Tentei bastante", "Às vezes fiz travessura"), com assinatura oficial "Papai Noel e os Duendes".
+- Gerenciamento de acessibilidade e foco: fechamento suportado via botão de rodapé, botão do topo, clique no backdrop e tecla ESC, com retorno automático e suave de foco para o botão de envio `#btn-enviar-cartinha`.
+- Suíte automatizada `tests/verify_story_3.py` cobrindo static checks e testes dinâmicos com Firefox Headless em 360px, 768px e 1920px. Todas as suítes (Histórias 1, 2 e 3) passam com 100% de sucesso.
 
 ## Spec Change Log
 

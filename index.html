@@ -258,8 +258,12 @@
                     </div>
 
                     <!-- Ações do Formulário -->
-                    <div class="form-acoes d-flex flex-column flex-sm-row gap-2 pt-2">
-                      <button type="submit" id="btn-validar-cartinha" class="btn btn-natal-primary flex-grow-1">
+                    <div class="form-acoes d-flex flex-column flex-sm-row flex-wrap gap-2 pt-2">
+                      <button type="button" id="btn-enviar-cartinha" class="btn btn-enviar-natal flex-grow-1">
+                        <span aria-hidden="true">🎅✨</span>
+                        <span class="ms-1">Enviar ao Papai Noel</span>
+                      </button>
+                      <button type="submit" id="btn-validar-cartinha" class="btn btn-natal-primary">
                         <span aria-hidden="true">✨</span>
                         <span class="ms-1">Revisar Minha Cartinha</span>
                       </button>
@@ -348,6 +352,65 @@
         </span>
       </div>
     </footer>
+  </div>
+
+  <!-- Modal Natalino do Papai Noel (CAP-3) -->
+  <div
+    class="modal fade modal-natalino"
+    id="modal-papai-noel"
+    tabindex="-1"
+    aria-labelledby="modalPapaiNoelLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content modal-content-natal">
+        <!-- Cabeçalho Natalino Vermelho e Dourado -->
+        <div class="modal-header modal-header-natal">
+          <h2 class="modal-title h5 d-flex align-items-center" id="modalPapaiNoelLabel">
+            <span class="modal-icone-titulo me-2" aria-hidden="true">🎅✨</span>
+            <span>Mensagem Especial do Papai Noel</span>
+          </h2>
+          <button
+            type="button"
+            class="btn-close btn-close-white btn-modal-fechar-topo"
+            data-bs-dismiss="modal"
+            aria-label="Fechar mensagem do Papai Noel"
+          ></button>
+        </div>
+
+        <!-- Corpo do Modal com Selo Oficial e Mensagem Personalizada -->
+        <div class="modal-body modal-body-natal p-4">
+          <!-- Selo Postal Oficial do Polo Norte -->
+          <div id="selo-polo-norte-modal" class="selo-modal text-center my-2" role="img" aria-label="Selo Postal Oficial do Polo Norte">
+            <div class="selo-modal-borda">
+              <div class="selo-modal-conteudo">
+                <span class="selo-modal-icone" aria-hidden="true">📮</span>
+                <span class="selo-modal-titulo">POLO NORTE EXPRESS</span>
+                <span class="selo-modal-subtitulo">Selo Postal Oficial Comemorativo</span>
+                <span class="selo-modal-ano">★ Oficial do Polo Norte • 2026 ★</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mensagem Carinhosa Personalizada -->
+          <div id="mensagem-papai-noel" class="mensagem-papai-noel-texto mt-3 text-start" tabindex="0" role="region" aria-label="Texto da resposta do Papai Noel">
+            <!-- Injetado dinamicamente pelo JavaScript -->
+          </div>
+        </div>
+
+        <!-- Rodapé do Modal com Botão de Fechar Ergonômico (>= 48px) -->
+        <div class="modal-footer modal-footer-natal justify-content-center p-3">
+          <button
+            type="button"
+            class="btn btn-modal-fechar btn-natal-primary d-inline-flex align-items-center justify-content-center"
+            data-bs-dismiss="modal"
+          >
+            <span aria-hidden="true">❤️</span>
+            <span class="ms-2">Obrigado(a), Papai Noel!</span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Bootstrap 5 JS Bundle via CDN -->

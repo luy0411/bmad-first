@@ -744,6 +744,256 @@ input[type="reset"]:focus-visible {
 }
 
 /* ==========================================================================
+   Botão de Envio Mágico e Despacho Festivo (CAP-3)
+   ========================================================================== */
+.btn-enviar-natal {
+  min-height: 48px;
+  min-width: 48px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--cor-natal-vermelho) 0%, #9e142b 100%);
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 800;
+  border: 2px solid var(--cor-natal-dourado);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(196, 30, 58, 0.4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-enviar-natal:hover,
+.btn-enviar-natal:focus {
+  background: linear-gradient(135deg, #a7182f 0%, #7d0f22 100%);
+  border-color: #ffd700;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(196, 30, 58, 0.6);
+}
+
+.btn-enviar-natal:focus-visible {
+  outline: 3px solid var(--cor-natal-dourado);
+  outline-offset: 2px;
+}
+
+.btn-enviar-natal:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(196, 30, 58, 0.4);
+}
+
+/* Animações Festivas de Despacho */
+@keyframes despachoMagicoPergaminho {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  }
+  35% {
+    transform: scale(1.03) translateY(-6px);
+    box-shadow: 0 18px 36px rgba(212, 175, 55, 0.5), 0 0 24px rgba(196, 30, 58, 0.35);
+  }
+  70% {
+    transform: scale(0.99) translateY(0);
+    box-shadow: 0 12px 28px rgba(212, 175, 55, 0.3);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.efeito-despacho {
+  animation: despachoMagicoPergaminho 1s ease-in-out;
+}
+
+@keyframes pulsarBotaoEnvio {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.7), 0 0 20px rgba(196, 30, 58, 0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.despachando-animacao {
+  animation: pulsarBotaoEnvio 0.8s ease-in-out;
+}
+
+/* ==========================================================================
+   Modal Natalino do Papai Noel (História 3 - CAP-3)
+   ========================================================================== */
+.modal-natalino .modal-content-natal {
+  background-color: var(--cor-papel-cartinha);
+  border: 3px solid var(--cor-natal-dourado);
+  border-radius: 20px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55), 0 0 35px rgba(212, 175, 55, 0.35);
+  color: var(--cor-texto-principal);
+  overflow: hidden;
+}
+
+.modal-header-natal {
+  background: linear-gradient(135deg, var(--cor-natal-vermelho) 0%, var(--cor-natal-vermelho-escuro) 100%);
+  color: #ffffff;
+  border-bottom: 2px solid var(--cor-natal-dourado);
+  padding: 1.1rem 1.5rem;
+}
+
+.modal-header-natal .modal-title {
+  color: #ffffff;
+  font-weight: 800;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.modal-body-natal {
+  background-color: #fdfbf7;
+  background-image: radial-gradient(#f0e6d2 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+  padding: 1.5rem;
+}
+
+/* Botão Fechar no Topo do Modal (Mínimo 48px x 48px) */
+.btn-modal-fechar-topo {
+  min-width: 48px;
+  min-height: 48px;
+  padding: 12px;
+  opacity: 0.9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-modal-fechar-topo:hover,
+.btn-modal-fechar-topo:focus {
+  opacity: 1;
+  transform: scale(1.08);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-modal-fechar-topo:focus-visible {
+  outline: 3px solid var(--cor-natal-dourado);
+  outline-offset: 2px;
+}
+
+/* Selo Postal Oficial do Polo Norte no Modal */
+.selo-modal {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.selo-modal-borda {
+  border: 3px dashed var(--cor-natal-vermelho);
+  border-radius: 16px;
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.15);
+  display: inline-block;
+}
+
+.selo-modal-conteudo {
+  background: linear-gradient(135deg, #fff7ea 0%, #ffeed2 100%);
+  border: 1px solid var(--cor-natal-dourado);
+  border-radius: 10px;
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.selo-modal-icone {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.selo-modal-titulo {
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: var(--cor-natal-vermelho);
+}
+
+.selo-modal-subtitulo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--cor-natal-verde-escuro);
+}
+
+.selo-modal-ano {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #7d5a10;
+  letter-spacing: 0.5px;
+}
+
+/* Mensagem do Papai Noel */
+.mensagem-papai-noel-texto {
+  background-color: #ffffff;
+  border: 1px solid var(--cor-borda-decorativa);
+  border-left: 5px solid var(--cor-natal-dourado);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #2b2b2b;
+}
+
+.mensagem-papai-noel-texto:focus-visible {
+  outline: 3px solid var(--cor-natal-dourado);
+  outline-offset: 2px;
+}
+
+.mensagem-papai-noel-saudacao {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--cor-natal-vermelho);
+  margin-bottom: 0.75rem;
+}
+
+.mensagem-papai-noel-corpo {
+  margin-bottom: 0.85rem;
+  color: #2b2b2b;
+}
+
+.mensagem-papai-noel-assinatura {
+  margin-top: 1.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--cor-borda-decorativa);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--cor-natal-vermelho-escuro);
+}
+
+.modal-footer-natal {
+  background-color: #f7f3ea;
+  border-top: 2px solid var(--cor-borda-decorativa);
+}
+
+/* Botão Fechar no Rodapé do Modal (Mínimo 48px x 48px) */
+.btn-modal-fechar {
+  min-height: 48px;
+  min-width: 180px;
+  padding: 12px 28px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 50px;
+}
+
+.btn-modal-fechar:focus-visible {
+  outline: 3px solid var(--cor-natal-dourado);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
    Responsividade (360px a 1920px)
    ========================================================================== */
 @media (max-width: 576px) {
@@ -769,6 +1019,26 @@ input[type="reset"]:focus-visible {
   .card-comportamento-inner {
     padding: 0.75rem 0.5rem;
   }
+
+  .form-acoes .btn {
+    width: 100%;
+  }
+
+  .btn-modal-fechar {
+    width: 100%;
+  }
+
+  .modal-dialog {
+    margin: 0.75rem;
+  }
+
+  .modal-body-natal {
+    padding: 1rem 0.85rem;
+  }
+
+  .mensagem-papai-noel-texto {
+    padding: 1rem 0.9rem;
+  }
 }
 
 /* ==========================================================================
@@ -781,6 +1051,11 @@ input[type="reset"]:focus-visible {
     display: none !important;
   }
 
+  .efeito-despacho,
+  .despachando-animacao {
+    animation: none !important;
+  }
+
   *,
   *::before,
   *::after {
@@ -790,4 +1065,5 @@ input[type="reset"]:focus-visible {
     scroll-behavior: auto !important;
   }
 }
+
 
