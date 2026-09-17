@@ -70,6 +70,11 @@
   let modalPapaiNoel;
   let mensagemPapaiNoel;
 
+  // Elementos do Modal do Vídeo da Magia do Natal
+  let modalMagiaNatal;
+  let iframeVideoMagia;
+  const URL_VIDEO_MAGIA_NATAL = 'https://www.youtube-nocookie.com/embed/rzDQZcwfNiw?start=15&autoplay=1&rel=0';
+
   function formatarDataNatal() {
     try {
       const hoje = new Date();
@@ -427,6 +432,65 @@
     }
   }
 
+  function abrirModalMagiaNatal() {
+    if (!modalMagiaNatal) return;
+
+    // Carrega o vídeo sob demanda imediatamente ao abrir
+    if (iframeVideoMagia) {
+      iframeVideoMagia.src = URL_VIDEO_MAGIA_NATAL;
+    }
+
+    if (window.bootstrap && typeof window.bootstrap.Modal === 'function') {
+      const modalInstancia = window.bootstrap.Modal.getOrCreateInstance(modalMagiaNatal);
+      modalInstancia.show();
+    } else {
+      modalMagiaNatal.classList.add('show');
+      modalMagiaNatal.style.display = 'block';
+      modalMagiaNatal.removeAttribute('aria-hidden');
+      modalMagiaNatal.setAttribute('aria-modal', 'true');
+      document.body.classList.add('modal-open');
+      let backdrop = document.querySelector('.modal-backdrop');
+      if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'modal-backdrop fade show';
+        document.body.appendChild(backdrop);
+      }
+      const fecharTopo = modalMagiaNatal.querySelector('.btn-modal-fechar-topo');
+      if (fecharTopo) {
+        fecharTopo.focus();
+      }
+    }
+  }
+
+  function fecharModalMagiaNatal() {
+    if (!modalMagiaNatal) return;
+
+    // Interrompe imediatamente o áudio e reprodução do vídeo
+    if (iframeVideoMagia) {
+      iframeVideoMagia.src = '';
+    }
+
+    if (window.bootstrap && typeof window.bootstrap.Modal === 'function') {
+      const modalInstancia = window.bootstrap.Modal.getInstance(modalMagiaNatal);
+      if (modalInstancia) {
+        modalInstancia.hide();
+      }
+    } else {
+      modalMagiaNatal.classList.remove('show');
+      modalMagiaNatal.style.display = 'none';
+      modalMagiaNatal.setAttribute('aria-hidden', 'true');
+      modalMagiaNatal.removeAttribute('aria-modal');
+      document.body.classList.remove('modal-open');
+      const backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) {
+        backdrop.remove();
+      }
+      if (btnConhecerMagia) {
+        btnConhecerMagia.focus();
+      }
+    }
+  }
+
   function enviarCartinhaParaNoel(evento) {
     if (evento) {
       evento.preventDefault();
@@ -501,6 +565,10 @@
     // Mapeamento do Modal do Papai Noel
     modalPapaiNoel = document.getElementById('modal-papai-noel');
     mensagemPapaiNoel = document.getElementById('mensagem-papai-noel');
+
+    // Mapeamento do Modal do Vídeo da Magia do Natal
+    modalMagiaNatal = document.getElementById('modal-magia-natal');
+    iframeVideoMagia = document.getElementById('iframe-video-magia');
 
     // Data no pergaminho
     if (cartaData) {
@@ -617,6 +685,52 @@
       btnImprimirModal.addEventListener('click', dispararImpressao);
     }
 
+    // Gerenciamento de eventos e foco acessível do Modal do Vídeo da Magia do Natal
+    if (modalMagiaNatal) {
+      // Ao iniciar a abertura do modal (seja via JS ou data-bs-toggle), popula o vídeo
+      modalMagiaNatal.addEventListener('show.bs.modal', () => {
+        if (iframeVideoMagia && !iframeVideoMagia.src) {
+          iframeVideoMagia.src = URL_VIDEO_MAGIA_NATAL;
+        }
+      });
+
+      modalMagiaNatal.addEventListener('hidden.bs.modal', () => {
+        if (iframeVideoMagia) {
+          iframeVideoMagia.src = '';
+        }
+        if (btnConhecerMagia) {
+          btnConhecerMagia.focus();
+        }
+      });
+
+      // Suporte a fechamento manual via botões com data-bs-dismiss (fallback seguro)
+      modalMagiaNatal.querySelectorAll('[data-bs-dismiss="modal"]').forEach((btnDismiss) => {
+        btnDismiss.addEventListener('click', () => {
+          if (!window.bootstrap || typeof window.bootstrap.Modal !== 'function') {
+            fecharModalMagiaNatal();
+          }
+        });
+      });
+
+      // Fechamento ao clicar fora (backdrop) em modo fallback
+      modalMagiaNatal.addEventListener('click', (eventoModal) => {
+        if (eventoModal.target === modalMagiaNatal) {
+          if (!window.bootstrap || typeof window.bootstrap.Modal !== 'function') {
+            fecharModalMagiaNatal();
+          }
+        }
+      });
+
+      // Fechamento pela tecla Escape
+      document.addEventListener('keydown', (eventoTeclado) => {
+        if (eventoTeclado.key === 'Escape' || eventoTeclado.key === 'Esc') {
+          if (modalMagiaNatal.classList.contains('show')) {
+            fecharModalMagiaNatal();
+          }
+        }
+      });
+    }
+
     // Botão de boas-vindas "Escrever Minha Cartinha"
     if (btnIniciar) {
       btnIniciar.addEventListener('click', () => {
@@ -631,14 +745,9 @@
       });
     }
 
-    // Botão "A Magia do Natal"
+    // Botão "A Magia do Natal" -> Abre o modal e roda o vídeo educativo da Turma da Mônica
     if (btnConhecerMagia) {
-      btnConhecerMagia.addEventListener('click', () => {
-        const banner = document.querySelector('.welcome-banner');
-        if (banner) {
-          banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      });
+      btnConhecerMagia.addEventListener('click', abrirModalMagiaNatal);
     }
 
     // Inicialização da carta e destaque inicial

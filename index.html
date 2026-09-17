@@ -99,7 +99,13 @@
               <span aria-hidden="true">✍️</span>
               <span class="ms-2">Escrever Minha Cartinha</span>
             </button>
-            <button type="button" id="btn-conhecer-magia" class="btn btn-natal-secondary btn-lg mb-2">
+            <button
+              type="button"
+              id="btn-conhecer-magia"
+              class="btn btn-natal-secondary btn-lg mb-2"
+              data-bs-toggle="modal"
+              data-bs-target="#modal-magia-natal"
+            >
               <span aria-hidden="true">❄️</span>
               <span class="ms-2">A Magia do Natal</span>
             </button>
@@ -419,6 +425,60 @@
           >
             <span aria-hidden="true">❤️</span>
             <span class="ms-2">Obrigado(a), Papai Noel!</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Festivo: A Magia do Natal (Vídeo YouTube) -->
+  <div
+    class="modal fade modal-natalino"
+    id="modal-magia-natal"
+    tabindex="-1"
+    aria-labelledby="modal-magia-natal-titulo"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content modal-content-natal">
+        <!-- Cabeçalho do Modal com Botão de Fechar Acessível -->
+        <div class="modal-header modal-header-natal">
+          <h2 class="modal-title h5 mb-0" id="modal-magia-natal-titulo">
+            <span aria-hidden="true">✨</span> A Magia do Natal com a Turma da Mônica <span aria-hidden="true">🎄</span>
+          </h2>
+          <button
+            type="button"
+            class="btn-close btn-close-white btn-modal-fechar-topo"
+            data-bs-dismiss="modal"
+            aria-label="Fechar vídeo da Magia do Natal"
+          ></button>
+        </div>
+
+        <!-- Corpo do Modal com Vídeo Incorporado Responsivo -->
+        <div class="modal-body modal-body-natal p-3 p-md-4 text-center">
+          <p class="lead fs-6 text-muted mb-3">
+            Assista a uma linda história animada sobre a amizade, o carinho e o verdadeiro encanto do Natal!
+          </p>
+          <div class="ratio ratio-16x9 shadow-sm rounded overflow-hidden moldura-video-natal">
+            <iframe
+              id="iframe-video-magia"
+              src=""
+              title="A Magia do Natal - Especial em Desenho Animado"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Rodapé do Modal com Botão de Fechar Ergonômico (>= 48px) -->
+        <div class="modal-footer modal-footer-natal justify-content-center p-3">
+          <button
+            type="button"
+            class="btn btn-modal-fechar btn-natal-primary d-inline-flex align-items-center justify-content-center"
+            data-bs-dismiss="modal"
+          >
+            <span aria-hidden="true">🌟</span>
+            <span class="ms-2">Voltar para a Cartinha</span>
           </button>
         </div>
       </div>

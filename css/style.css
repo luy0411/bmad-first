@@ -993,6 +993,13 @@ input[type="reset"]:focus-visible {
   outline-offset: 2px;
 }
 
+/* Moldura Festiva para o Vídeo Incorporado */
+.moldura-video-natal {
+  border: 3px solid var(--cor-natal-dourado);
+  background-color: #000000;
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+}
+
 /* ==========================================================================
    Responsividade (360px a 1920px)
    ========================================================================== */
