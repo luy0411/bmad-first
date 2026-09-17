@@ -1066,4 +1066,169 @@ input[type="reset"]:focus-visible {
   }
 }
 
+/* ==========================================================================
+   Botão de Impressão Natalino (.btn-imprimir-natal) - CAP-5
+   ========================================================================== */
+.btn-imprimir-natal {
+  background: linear-gradient(135deg, #165b33 0%, #114b29 100%);
+  color: #ffffff;
+  border: 2px solid #2e8b57;
+  font-family: var(--fonte-primaria);
+  font-weight: 700;
+  border-radius: 50px;
+  padding: 0.75rem 1.4rem;
+  box-shadow: 0 4px 12px rgba(22, 91, 51, 0.25);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+}
+
+.btn-imprimir-natal:hover,
+.btn-imprimir-natal:focus {
+  background: linear-gradient(135deg, #1b6d3d 0%, #165b33 100%);
+  color: #ffffff;
+  border-color: #3cb371;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(22, 91, 51, 0.35);
+}
+
+.btn-imprimir-natal:focus-visible {
+  outline: 3px solid var(--cor-natal-dourado);
+  outline-offset: 2px;
+}
+
+.btn-imprimir-natal:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Regras de Impressão Estilizada (@media print) - CAP-5
+   ========================================================================== */
+@media print {
+  /* Ocultar elementos funcionais web e controles desnecessários */
+  .festive-header,
+  .festive-footer,
+  #snow-container,
+  .snowflake,
+  .skip-link,
+  .intro-card,
+  .welcome-banner,
+  .painel-formulario,
+  .formulario-card-wrapper,
+  #form-carta,
+  .form-acoes,
+  .alerta-sucesso-natal,
+  .modal,
+  .modal-backdrop,
+  .btn,
+  button,
+  .mensagem-ajuda-gentil,
+  nav,
+  header,
+  footer {
+    display: none !important;
+  }
+
+  /* Reset de layout e fundo econômico para folha física */
+  html, body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 12pt !important;
+    font-family: "Georgia", "Cambria", "Times New Roman", serif !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  main,
+  .container,
+  .row,
+  .col-12,
+  .col-lg-6,
+  .pergaminho-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    float: none !important;
+  }
+
+  /* Cartinha em Pergaminho Formatada como Lembrança Física de Natal */
+  #pergaminho-carta {
+    display: block !important;
+    background: #fffef8 !important;
+    border: 3px double #990000 !important;
+    border-radius: 12px !important;
+    padding: 2cm !important;
+    margin: 0 auto !important;
+    max-width: 18.5cm !important;
+    box-shadow: none !important;
+    color: #1f1f1f !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .pergaminho-header {
+    border-bottom: 2px solid #cca43b !important;
+    padding-bottom: 0.5cm !important;
+    margin-bottom: 0.8cm !important;
+  }
+
+  .selo-carimbo {
+    border: 2px dashed #990000 !important;
+    padding: 0.3cm 0.6cm !important;
+    color: #990000 !important;
+  }
+
+  .pergaminho-titulo-saudacao {
+    font-size: 16pt !important;
+    color: #990000 !important;
+    font-weight: bold !important;
+  }
+
+  .destaque-pergaminho {
+    color: #165b33 !important;
+    font-weight: bold !important;
+  }
+
+  .destaque-comportamento {
+    background: #fdf6e2 !important;
+    border-color: #cca43b !important;
+    color: #382a17 !important;
+  }
+
+  .carta-texto-pedidos {
+    border-left: 4px solid #165b33 !important;
+    background: #fcfcfc !important;
+    color: #111111 !important;
+    padding: 0.8cm !important;
+    margin: 0.5cm 0 !important;
+    font-size: 13pt !important;
+  }
+
+  .carta-assinatura-manuscrita {
+    color: #990000 !important;
+    font-size: 16pt !important;
+  }
+
+  .pergaminho-rodape {
+    border-top: 2px solid #cca43b !important;
+    padding-top: 0.5cm !important;
+    margin-top: 0.8cm !important;
+  }
+
+  .selo-cera {
+    border: 2px solid #990000 !important;
+    background: #990000 !important;
+    color: #ffffff !important;
+    border-radius: 50% !important;
+    padding: 0.4cm !important;
+  }
+}
+
+
 

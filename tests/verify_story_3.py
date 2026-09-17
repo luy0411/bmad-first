@@ -437,6 +437,8 @@ def main():
             cmd = [
                 "firefox",
                 "--headless",
+                "-no-remote",
+                "-P", "bmad_test_profile",
                 f"--screenshot={screenshot_dest}",
                 f"--window-size={width},{height}",
                 f"http://127.0.0.1:{port}/test_runner_s3.html"

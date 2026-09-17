@@ -31,6 +31,6 @@
     Adiciona o recurso de impressão e formatação para folha física atendendo a CAP-5 de SPEC.md.
     Dispara window.print() via botão temático com regras @media print que ocultam controles web e destacam uma cartinha festiva limpa para guardar.
   spec_checkpoint: false
-  done_checkpoint: false
+  done_checkpoint: true
   invoke_dev_with: >-
     Garantir que botões de interface, modais e elementos funcionais fiquem ocultos no @media print, mantendo apenas a cartinha formatada como lembrança.

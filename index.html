@@ -263,6 +263,10 @@
                         <span aria-hidden="true">🎅✨</span>
                         <span class="ms-1">Enviar ao Papai Noel</span>
                       </button>
+                      <button type="button" id="btn-imprimir-cartinha" class="btn btn-imprimir-natal">
+                        <span aria-hidden="true">🖨️</span>
+                        <span class="ms-1">Imprimir / Guardar</span>
+                      </button>
                       <button type="submit" id="btn-validar-cartinha" class="btn btn-natal-primary">
                         <span aria-hidden="true">✨</span>
                         <span class="ms-1">Revisar Minha Cartinha</span>
@@ -398,8 +402,16 @@
           </div>
         </div>
 
-        <!-- Rodapé do Modal com Botão de Fechar Ergonômico (>= 48px) -->
-        <div class="modal-footer modal-footer-natal justify-content-center p-3">
+        <!-- Rodapé do Modal com Botão de Fechar Ergonômico (>= 48px) e Impressão -->
+        <div class="modal-footer modal-footer-natal justify-content-center flex-wrap gap-2 p-3">
+          <button
+            type="button"
+            id="btn-imprimir-modal"
+            class="btn btn-imprimir-natal d-inline-flex align-items-center justify-content-center"
+          >
+            <span aria-hidden="true">🖨️</span>
+            <span class="ms-2">Imprimir Cartinha</span>
+          </button>
           <button
             type="button"
             class="btn btn-modal-fechar btn-natal-primary d-inline-flex align-items-center justify-content-center"

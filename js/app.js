@@ -63,6 +63,8 @@
   let btnIniciar;
   let btnConhecerMagia;
   let btnEnviarCartinha;
+  let btnImprimirCartinha;
+  let btnImprimirModal;
 
   // Elementos do Modal do Papai Noel
   let modalPapaiNoel;
@@ -454,6 +456,17 @@
     return true;
   }
 
+  function dispararImpressao(evento) {
+    if (evento) {
+      evento.preventDefault();
+    }
+    if (typeof window.__mockPrint === 'function') {
+      window.__mockPrint();
+      return;
+    }
+    window.print();
+  }
+
   function inicializar() {
     // Mapeamento dos elementos
     formCartinha = document.getElementById('form-cartinha');
@@ -482,6 +495,8 @@
     btnIniciar = document.getElementById('btn-iniciar-cartinha');
     btnConhecerMagia = document.getElementById('btn-conhecer-magia');
     btnEnviarCartinha = document.getElementById('btn-enviar-cartinha');
+    btnImprimirCartinha = document.getElementById('btn-imprimir-cartinha');
+    btnImprimirModal = document.getElementById('btn-imprimir-modal');
 
     // Mapeamento do Modal do Papai Noel
     modalPapaiNoel = document.getElementById('modal-papai-noel');
@@ -592,6 +607,14 @@
     // Botão de recomeçar/limpar
     if (btnLimpar) {
       btnLimpar.addEventListener('click', resetarFormulario);
+    }
+
+    // Botões de impressão estilizada (CAP-5)
+    if (btnImprimirCartinha) {
+      btnImprimirCartinha.addEventListener('click', dispararImpressao);
+    }
+    if (btnImprimirModal) {
+      btnImprimirModal.addEventListener('click', dispararImpressao);
     }
 
     // Botão de boas-vindas "Escrever Minha Cartinha"

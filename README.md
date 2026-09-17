@@ -57,8 +57,8 @@ Conforme planejado em [`specs/spec-santa-letter-app/stories.yaml`](specs/spec-sa
 |---|---|:---:|---|
 | **1** | [Estrutura base da SPA com tema natalino](specs/spec-santa-letter-app/stories/1-estrutura-base-tema-natalino-layout-responsivo.md) | ✅ Concluída | Esqueleto HTML5/CSS, Bootstrap 5 CDN, efeito de neve, paleta natalina e layout responsivo de 360px a 1920px (CAP-4). |
 | **2** | [Formulário de redação da carta e seletor de comportamento](specs/spec-santa-letter-app/stories/2-formulario-redacao-carta-seletor-comportamento.md) | ✅ Concluída | Campos de dados com validações gentis, seletor lúdico de comportamento (área $\ge$ 48px), prévia em tempo real no pergaminho e botão recomeçar (CAP-1 e CAP-2). |
-| **3** | [Envio interativo da carta e modal do Papai Noel](specs/spec-santa-letter-app/stories/3-envio-interativo-carta-feedback-modal-papai-noel.md) | ⏳ Próxima | Simulação de envio festivo sem recarregar a página, animação comemorativa e modal com mensagem acolhedora e selo do Polo Norte (CAP-3). |
-| **4** | Impressão estilizada da cartinha física | 📋 Planejada | Regras `@media print` e botão para impressão limpa da cartinha de recordação (CAP-5). |
+| **3** | [Envio interativo da carta e modal do Papai Noel](specs/spec-santa-letter-app/stories/3-envio-interativo-carta-feedback-modal-papai-noel.md) | ✅ Concluída | Simulação de envio festivo sem recarregar a página, animação comemorativa e modal com mensagem acolhedora e selo do Polo Norte (CAP-3). |
+| **4** | [Impressão estilizada da cartinha física](specs/spec-santa-letter-app/stories/4-impressao-estilizada-cartinha-lembranca-fisica.md) | ✅ Concluída | Regras `@media print` e botão para impressão limpa da cartinha de recordação (CAP-5). |
 
 ---
 
@@ -91,6 +91,12 @@ python3 tests/verify_story_1.py
 
 # Executar testes da História 2 (validações acolhedoras, seletor de comportamento e ergonomia)
 python3 tests/verify_story_2.py
+
+# Executar testes da História 3 (envio comemorativo, modal do Papai Noel e acessibilidade)
+python3 tests/verify_story_3.py
+
+# Executar testes da História 4 (impressão física, @media print e ergonomia de controles)
+python3 tests/verify_story_4.py
 ```
 
 ---
@@ -112,10 +118,13 @@ bmad-first/
 │       └── stories/        # Detalhamento e critérios de aceitação de cada história
 │           ├── 1-estrutura-base-tema-natalino-layout-responsivo.md
 │           ├── 2-formulario-redacao-carta-seletor-comportamento.md
-│           └── 3-envio-interativo-carta-feedback-modal-papai-noel.md
+│           ├── 3-envio-interativo-carta-feedback-modal-papai-noel.md
+│           └── 4-impressao-estilizada-cartinha-lembranca-fisica.md
 ├── tests/                  # Testes automatizados E2E e de conformidade (Selenium Headless)
 │   ├── verify_story_1.py   # Verificação da História 1 (responsividade, neve, tema)
 │   ├── verify_story_2.py   # Verificação da História 2 (formulário, comportamento, ergonomia)
+│   ├── verify_story_3.py   # Verificação da História 3 (envio mágico, modal do Papai Noel, acessibilidade)
+│   ├── verify_story_4.py   # Verificação da História 4 (regras de impressão, @media print, ergonomia)
 │   └── artifacts/          # Evidências e screenshots das verificações visuais
 ├── index.html              # Página principal da aplicação (SPA)
 └── README.md               # Apresentação do projeto e guia de estudos BMad
@@ -126,5 +135,5 @@ bmad-first/
 ## 📚 Como Praticar e Estudar o BMad neste Repositório
 
 1. **Leia a Especificação:** Explore o arquivo [`specs/spec-santa-letter-app/SPEC.md`](specs/spec-santa-letter-app/SPEC.md) para entender como uma SPEC canônica deve ser formulada (Porquê, Capacidades, Restrições, Não-objetivos).
-2. **Acompanhe a Execução de Histórias:** Veja em [`specs/spec-santa-letter-app/stories/1-estrutura-base-tema-natalino-layout-responsivo.md`](specs/spec-santa-letter-app/stories/1-estrutura-base-tema-natalino-layout-responsivo.md) e [`specs/spec-santa-letter-app/stories/2-formulario-redacao-carta-seletor-comportamento.md`](specs/spec-santa-letter-app/stories/2-formulario-redacao-carta-seletor-comportamento.md) como critérios de aceitação, mapeamento de código, testes e triagem de revisão são documentados.
-3. **Avance no Desenvolvimento:** Implemente a História 3 seguindo o contrato canônico em [`specs/spec-santa-letter-app/stories/3-envio-interativo-carta-feedback-modal-papai-noel.md`](specs/spec-santa-letter-app/stories/3-envio-interativo-carta-feedback-modal-papai-noel.md) com a persona Dev Amelia.
+2. **Acompanhe a Execução de Histórias:** Veja em [`specs/spec-santa-letter-app/stories/`](specs/spec-santa-letter-app/stories/) como critérios de aceitação, mapeamento de código, testes e triagem de revisão são documentados em cada história de 1 a 4.
+3. **Conclusão e Retrospectiva:** Todas as capacidades (CAP-1 a CAP-5) foram implementadas e verificadas com 100% de conformidade automatizada sob a metodologia BMad e desenvolvimento guiado por testes.
