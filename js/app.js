@@ -73,7 +73,7 @@
   // Elementos do Modal do Vídeo da Magia do Natal
   let modalMagiaNatal;
   let iframeVideoMagia;
-  const URL_VIDEO_MAGIA_NATAL = 'https://www.youtube-nocookie.com/embed/rzDQZcwfNiw?start=15&autoplay=1&rel=0';
+  const URL_VIDEO_MAGIA_NATAL = 'https://www.youtube.com/embed/rzDQZcwfNiw?si=sR3JNS2Z7ET8iNuE&amp;start=15';
 
   function formatarDataNatal() {
     try {
